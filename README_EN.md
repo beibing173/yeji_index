@@ -3,6 +3,10 @@
 [English](README_EN.md) | [中文](README.md)
 
 <p align="center">
+  <img src="https://yeji.edu.kg/favicon.ico" alt="WCU Logo" width="120">
+</p>
+
+<p align="center">
   <strong>The World's #∞ Ranked Elite Institution 🎓</strong><br>
   <em>Free .edu for Everyone</em>
 </p>

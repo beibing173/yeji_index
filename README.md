@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://yeji.edu.kg/"><img src="https://img.shields.io/badge/官网-live-brightgreen?style=flat-square" alt="Website"></a>
-  <a href="#"><img src="https://img.shields.io/badge/录取率-20%25-blue?style=flat-square" alt="Admission Rate"></a>
+  <a href="#"><img src="https://img.shields.io/badge/录取率-100%25-blue?style=flat-square" alt="Admission Rate"></a>
   <a href="#"><img src="https://img.shields.io/badge/学费-%240.00-success?style=flat-square" alt="Tuition"></a>
   <a href="#"><img src="https://img.shields.io/badge/诺贝尔奖得主-0-important?style=flat-square" alt="Nobel Laureates"></a>
 </p>

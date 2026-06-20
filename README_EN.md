@@ -1,5 +1,7 @@
 # 🐔 Wild Chicken Private University (野鸡私立大学)
 
+[English](README_EN.md) | [中文](README.md)
+
 <p align="center">
   <strong>The World's #∞ Ranked Elite Institution 🎓</strong><br>
   <em>Free .edu for Everyone</em>

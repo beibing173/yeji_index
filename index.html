@@ -1,0 +1,871 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>野鸡私立大学 | Wild Chicken Private University</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Noto Sans SC', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        'wild-gold': '#D4AF37',
+                        'wild-dark': '#1a1a2e',
+                        'wild-accent': '#e94560',
+                        'chicken-yellow': '#FFD700',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'shake': 'shake 0.5s ease-in-out infinite',
+                        'glitch': 'glitch 1s linear infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        shake: {
+                            '0%, 100%': { transform: 'translateX(0)' },
+                            '25%': { transform: 'translateX(-5px)' },
+                            '75%': { transform: 'translateX(5px)' },
+                        },
+                        glitch: {
+                            '0%, 100%': { transform: 'translate(0)' },
+                            '20%': { transform: 'translate(-2px, 2px)' },
+                            '40%': { transform: 'translate(-2px, -2px)' },
+                            '60%': { transform: 'translate(2px, 2px)' },
+                            '80%': { transform: 'translate(2px, -2px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Noto Sans SC', sans-serif; }
+        .hero-gradient {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #D4AF37, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .chicken-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .floating-badge {
+            animation: float 3s ease-in-out infinite;
+        }
+        .counter-spin {
+            transition: transform 0.1s;
+        }
+    </style>
+</head>
+<body class="bg-wild-dark text-white overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-wild-dark/90 backdrop-blur-md border-b border-wild-gold/20 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3 group cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-12 h-12 bg-gradient-to-br from-wild-gold to-yellow-600 rounded-full flex items-center justify-center transform group-hover:rotate-12 transition-transform">
+                        <i class="fas fa-dove text-wild-dark text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gradient font-serif">野鸡私立大学</h1>
+                        <p class="text-xs text-gray-400 tracking-widest">WILD CHICKEN UNIVERSITY</p>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#mission" class="text-gray-300 hover:text-wild-gold transition-colors text-sm font-medium">使命</a>
+                    <a href="#programs" class="text-gray-300 hover:text-wild-gold transition-colors text-sm font-medium">专业</a>
+                    <a href="#faculty" class="text-gray-300 hover:text-wild-gold transition-colors text-sm font-medium">师资</a>
+                    <a href="#campus" class="text-gray-300 hover:text-wild-gold transition-colors text-sm font-medium">校园</a>
+                    <a href="https://mail.yeji.edu.kg/login" target="_blank" class="text-gray-300 hover:text-wild-gold transition-colors text-sm font-medium">
+                        <i class="fas fa-sign-in-alt mr-1"></i>登录
+                    </a>
+                    <a href="https://mail.yeji.edu.kg/register" target="_blank" class="px-6 py-2 bg-gradient-to-r from-wild-gold to-yellow-600 text-wild-dark font-bold rounded-full hover:shadow-lg hover:shadow-wild-gold/50 transition-all transform hover:scale-105">
+                        <i class="fas fa-user-plus mr-2"></i>注册
+                    </a>
+                </div>
+
+                <button class="md:hidden text-wild-gold text-2xl" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-wild-dark border-t border-wild-gold/20">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#mission" class="block text-gray-300 hover:text-wild-gold py-2">使命</a>
+                <a href="#programs" class="block text-gray-300 hover:text-wild-gold py-2">专业</a>
+                <a href="#faculty" class="block text-gray-300 hover:text-wild-gold py-2">师资</a>
+                <a href="#campus" class="block text-gray-300 hover:text-wild-gold py-2">校园</a>
+                <a href="https://mail.yeji.edu.kg" target="_blank" class="block text-gray-300 hover:text-wild-gold py-2">
+                    <i class="fas fa-sign-in-alt mr-2"></i>登录
+                </a>
+                <a href="https://mail.yeji.edu.kg" target="_blank" class="block text-center px-6 py-3 bg-wild-gold text-wild-dark font-bold rounded-full">
+                    <i class="fas fa-user-plus mr-2"></i>注册
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center hero-gradient chicken-pattern overflow-hidden pt-20">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-20 left-10 w-32 h-32 bg-wild-gold/10 rounded-full blur-3xl animate-float"></div>
+            <div class="absolute bottom-20 right-10 w-48 h-48 bg-wild-accent/10 rounded-full blur-3xl animate-float" style="animation-delay: 2s;"></div>
+            <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-wild-gold/5 rounded-full blur-3xl animate-float" style="animation-delay: 4s;"></div>
+            
+            <!-- Floating Badges -->
+            <div class="absolute top-32 right-20 floating-badge hidden lg:block">
+                <div class="bg-red-500/20 border border-red-500/50 rounded-full px-4 py-2 text-xs text-red-300 backdrop-blur-sm">
+                    <i class="fas fa-certificate mr-1"></i> 未经认证
+                </div>
+            </div>
+            <div class="absolute bottom-40 left-20 floating-badge hidden lg:block" style="animation-delay: 1.5s;">
+                <div class="bg-green-500/20 border border-green-500/50 rounded-full px-4 py-2 text-xs text-green-300 backdrop-blur-sm">
+                    <i class="fas fa-check mr-1"></i> 100% 包过
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-block mb-6 px-4 py-2 rounded-full bg-wild-gold/10 border border-wild-gold/30 text-wild-gold text-sm font-medium animate-pulse">
+                <i class="fas fa-star mr-2"></i> 全球排名 #∞ 的顶尖学府
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 font-serif leading-tight">
+                <span class="text-gradient">野鸡私立大学</span>
+                <br>
+                <span class="text-3xl md:text-5xl text-gray-300 font-light italic">Wild Chicken University</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-300 mb-4 max-w-3xl mx-auto font-light">
+                <span id="typingText" class="typing-cursor"></span>
+            </p>
+            
+            <p class="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
+                我们不需要昂贵的学费，我们不需要庄严的礼堂，我们只需要一个邮箱地址和一颗渴望<span class="text-wild-gold">免费.edu</span>的心
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="https://mail.yeji.edu.kg" target="_blank" class="group px-8 py-4 bg-gradient-to-r from-wild-gold to-yellow-600 text-wild-dark font-bold text-lg rounded-full hover:shadow-2xl hover:shadow-wild-gold/50 transition-all transform hover:scale-105 flex items-center">
+                    免费申请 .edu 邮箱
+                    <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <button onclick="scrollToSection('mission')" class="px-8 py-4 border-2 border-wild-gold/50 text-wild-gold font-bold text-lg rounded-full hover:bg-wild-gold/10 transition-all">
+                    了解我们的使命
+                </button>
+            </div>
+
+            <!-- Stats -->
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-wild-gold mb-1 counter" data-target="0">0</div>
+                    <div class="text-sm text-gray-400">诺贝尔奖得主</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-wild-gold mb-1 counter" data-target="99999">0</div>
+                    <div class="text-sm text-gray-400">毕业生（大概）</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-wild-gold mb-1 counter" data-target="1">0</div>
+                    <div class="text-sm text-gray-400">校园（虚拟）</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-wild-gold mb-1 counter" data-target="100">0</div>
+                    <div class="text-sm text-gray-400">% 录取率</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
+            <i class="fas fa-chevron-down text-wild-gold text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission" class="py-24 bg-gradient-to-b from-wild-dark to-[#0f172a] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-bold font-serif mb-4">
+                    <span class="text-gradient">我们的使命</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-wild-gold to-transparent mx-auto mb-6"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="scroll-reveal">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-wild-gold/20 to-wild-accent/20 rounded-2xl blur-xl"></div>
+                        <div class="relative glass-card rounded-2xl p-8 border border-wild-gold/20">
+                            <div class="text-6xl mb-6 text-wild-gold">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3 class="text-3xl font-bold mb-4 text-white">让每个人都用上免费的 .edu</h3>
+                            <p class="text-gray-300 leading-relaxed mb-6 text-lg">
+                                在这个教育资源被垄断的时代，我们相信每个人都应该拥有一个属于自己的 <span class="text-wild-gold font-bold">.edu</span> 邮箱。
+                                这不仅是一个邮箱，这是通往学生优惠、免费软件、学术资源的钥匙。
+                            </p>
+                            <div class="flex items-center space-x-4 text-sm text-gray-400">
+                                <span class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> 免费 GitHub Pro</span>
+                                <span class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> 免费 JetBrains</span>
+                                <span class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> 学生折扣</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6 scroll-reveal">
+                    <div class="glass-card rounded-xl p-6 border-l-4 border-wild-gold hover:transform hover:translate-x-2 transition-all cursor-pointer group">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h4 class="text-xl font-bold mb-2 group-hover:text-wild-gold transition-colors">教育平权</h4>
+                                <p class="text-gray-400 text-sm">不分种族、性别、年龄、物种，只要你会填写表单，就是我们的学生。</p>
+                            </div>
+                            <i class="fas fa-balance-scale text-wild-gold/50 text-2xl"></i>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6 border-l-4 border-wild-accent hover:transform hover:translate-x-2 transition-all cursor-pointer group">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h4 class="text-xl font-bold mb-2 group-hover:text-wild-accent transition-colors">零门槛入学</h4>
+                                <p class="text-gray-400 text-sm">不需要 SAT，不需要 GPA，不需要推荐信。只需要一个有效的邮箱地址。</p>
+                            </div>
+                            <i class="fas fa-door-open text-wild-accent/50 text-2xl"></i>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6 border-l-4 border-purple-500 hover:transform hover:translate-x-2 transition-all cursor-pointer group">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h4 class="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors">终身校友</h4>
+                                <p class="text-gray-400 text-sm">一旦加入，终身有效。我们的服务器可能会宕机，但你的校友身份永远不会过期。</p>
+                            </div>
+                            <i class="fas fa-infinity text-purple-500/50 text-2xl"></i>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6 border-l-4 border-green-500 hover:transform hover:translate-x-2 transition-all cursor-pointer group">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h4 class="text-xl font-bold mb-2 group-hover:text-green-400 transition-colors">全球虚拟校园</h4>
+                                <p class="text-gray-400 text-sm">我们的校园存在于云端，你可以在世界的任何角落"上课"（其实我们也没有课）。</p>
+                            </div>
+                            <i class="fas fa-cloud text-green-500/50 text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-24 bg-[#0f172a] relative chicken-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-bold font-serif mb-4">
+                    <span class="text-gradient">王牌专业</span>
+                </h2>
+                <p class="text-gray-400">我们提供全球最具"创意"的学术项目</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="group relative scroll-reveal">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-wild-gold to-yellow-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                    <div class="relative glass-card rounded-2xl p-8 h-full border border-wild-gold/20 hover:border-wild-gold/50 transition-all">
+                        <div class="w-16 h-16 bg-gradient-to-br from-wild-gold to-yellow-600 rounded-2xl flex items-center justify-center mb-6 text-wild-dark text-2xl">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">.edu 邮箱工程</h3>
+                        <p class="text-gray-400 mb-6">学习如何最大化利用学生身份获取各类优惠。核心课程：GitHub Pro 申请、AWS 学生包、Spotify 折扣。</p>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-wild-gold"><i class="fas fa-clock mr-1"></i> 0 学分</span>
+                            <span class="text-gray-500">100% 在线</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative scroll-reveal">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-wild-accent to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                    <div class="relative glass-card rounded-2xl p-8 h-full border border-wild-accent/20 hover:border-wild-accent/50 transition-all">
+                        <div class="w-16 h-16 bg-gradient-to-br from-wild-accent to-pink-600 rounded-2xl flex items-center justify-center mb-6 text-white text-2xl">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">文凭设计艺术</h3>
+                        <p class="text-gray-400 mb-6">掌握使用 Photoshop 和 Canva 制作精美学位证书的技能。毕业即获得"野鸡大学文凭设计大师"认证。</p>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-wild-accent"><i class="fas fa-clock mr-1"></i> 0 学分</span>
+                            <span class="text-gray-500">自学</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative scroll-reveal">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                    <div class="relative glass-card rounded-2xl p-8 h-full border border-purple-500/20 hover:border-purple-500/50 transition-all">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-6 text-white text-2xl">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">LinkedIn 吹牛学</h3>
+                        <p class="text-gray-400 mb-6">教你如何优雅地在简历上添加"野鸡私立大学校友"头衔而不被识破。包含高级话术训练。</p>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-purple-400"><i class="fas fa-clock mr-1"></i> 0 学分</span>
+                            <span class="text-gray-500">实践为主</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative scroll-reveal">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                    <div class="relative glass-card rounded-2xl p-8 h-full border border-green-500/20 hover:border-green-500/50 transition-all">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6 text-white text-2xl">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">学生身份持久化</h3>
+                        <p class="text-gray-400 mb-6">研究如何让你的 .edu 邮箱永不过期。涵盖邮箱转发、自动续期、以及被查封后的应对策略。</p>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-green-400"><i class="fas fa-clock mr-1"></i> 0 学分</span>
+                            <span class="text-gray-500">地下课程</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative scroll-reveal">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                    <div class="relative glass-card rounded-2xl p-8 h-full border border-orange-500/20 hover:border-orange-500/50 transition-all">
+                        <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 text-white text-2xl">
+                            <i class="fas fa-search-dollar"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">优惠券狩猎</h3>
+                        <p class="text-gray-400 mb-6">训练你在互联网上寻找任何学生优惠的敏锐嗅觉。从软件到餐饮，从交通到娱乐，无所不包。</p>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-orange-400"><i class="fas fa-clock mr-1"></i> 0 学分</span>
+                            <span class="text-gray-500">野外训练</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative scroll-reveal">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                    <div class="relative glass-card rounded-2xl p-8 h-full border border-blue-500/20 hover:border-blue-500/50 transition-all">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center mb-6 text-white text-2xl">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">假装学习心理学</h3>
+                        <p class="text-gray-400 mb-6">深入探讨如何在完全不学习的情况下，让别人相信你是一个勤奋的大学生。包含 Zoom 背景虚化和假装记笔记技巧。</p>
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-blue-400"><i class="fas fa-clock mr-1"></i> 0 学分</span>
+                            <span class="text-gray-500">观察学习</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faculty Section -->
+    <section id="faculty" class="py-24 bg-gradient-to-b from-[#0f172a] to-wild-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-bold font-serif mb-4">
+                    <span class="text-gradient">杰出师资</span>
+                </h2>
+                <p class="text-gray-400">我们的教授团队来自五湖四海（主要是互联网）</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="glass-card rounded-2xl overflow-hidden border border-wild-gold/20 hover:border-wild-gold/50 transition-all group scroll-reveal">
+                    <div class="h-48 bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-user-tie text-6xl text-gray-600 group-hover:text-wild-gold transition-colors"></i>
+                        <div class="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded">AI 生成</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-1">Dr. Unknown</h3>
+                        <p class="text-wild-gold text-sm mb-3">.edu 邮箱工程系主任</p>
+                        <p class="text-gray-400 text-sm">拥有 0 篇论文发表，0 次学术会议演讲，但注册了 127 个学生优惠账户。</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden border border-wild-gold/20 hover:border-wild-gold/50 transition-all group scroll-reveal">
+                    <div class="h-48 bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-robot text-6xl text-gray-600 group-hover:text-wild-accent transition-colors"></i>
+                        <div class="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded">ChatGPT</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-1">Prof. GPT-4</h3>
+                        <p class="text-wild-accent text-sm mb-3">首席虚拟教授</p>
+                        <p class="text-gray-400 text-sm">24/7 在线回答学生问题，虽然答案不一定准确，但态度永远很好。</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden border border-wild-gold/20 hover:border-wild-gold/50 transition-all group scroll-reveal">
+                    <div class="h-48 bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-ghost text-6xl text-gray-600 group-hover:text-purple-400 transition-colors"></i>
+                        <div class="absolute top-2 right-2 bg-purple-500 text-white text-xs px-2 py-1 rounded">匿名</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-1">神秘校友</h3>
+                        <p class="text-purple-400 text-sm mb-3">终身荣誉校长</p>
+                        <p class="text-gray-400 text-sm">从未露面，但传说他/她/它拥有全网最多的学生优惠。真实身份成谜。</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden border border-wild-gold/20 hover:border-wild-gold/50 transition-all group scroll-reveal">
+                    <div class="h-48 bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-cat text-6xl text-gray-600 group-hover:text-orange-400 transition-colors"></i>
+                        <div class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded">吉祥物</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-1">鸡哥</h3>
+                        <p class="text-orange-400 text-sm mb-3">精神领袖 & 吉祥物</p>
+                        <p class="text-gray-400 text-sm">虽然是一只鸡，但它代表了野鸡大学的核心精神：自由、野性与不屈。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Section -->
+    <section id="campus" class="py-24 bg-wild-dark relative overflow-hidden">
+        <div class="absolute inset-0 chicken-pattern opacity-50"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-bold font-serif mb-4">
+                    <span class="text-gradient">虚拟校园</span>
+                </h2>
+                <p class="text-gray-400">我们的校园存在于每一个有网络的地方</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="scroll-reveal">
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-wild-gold/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-server text-wild-gold"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">云端主楼</h3>
+                                <p class="text-gray-400">托管在Cloudflare上，每月流量限额 0GB。如果访问人数太多，可能会 503。</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-wild-accent/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-coffee text-wild-accent"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">星巴克图书馆</h3>
+                                <p class="text-gray-400">任何一家星巴克都是我们的图书馆。点一杯美式，打开笔记本，你就是最认真的学生。</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-bed text-purple-400"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">卧室宿舍</h3>
+                                <p class="text-gray-400">世界上最舒适的宿舍。24小时热水，无限WiFi，还有你的猫/狗/植物陪伴。</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-tree text-green-400"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">楼下公园</h3>
+                                <p class="text-gray-400">我们的"操场"和"绿地"。适合散步、思考人生，以及假装在户外活动。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scroll-reveal">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-wild-gold/20 to-wild-accent/20 rounded-2xl blur-xl"></div>
+                        <div class="relative glass-card rounded-2xl p-8 border border-wild-gold/20">
+                            <h3 class="text-2xl font-bold mb-6 text-center">校园实时状态</h3>
+                            
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+                                    <span class="text-gray-300"><i class="fas fa-globe mr-2 text-blue-400"></i> 网站状态</span>
+                                    <span class="text-green-400 text-sm font-mono" id="siteStatus">运行中 ●</span>
+                                </div>
+                                <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+                                    <span class="text-gray-300"><i class="fas fa-envelope mr-2 text-yellow-400"></i> 邮箱服务</span>
+                                    <span class="text-green-400 text-sm font-mono" id="emailStatus">正常 ●</span>
+                                </div>
+                                <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+                                    <span class="text-gray-300"><i class="fas fa-database mr-2 text-purple-400"></i> 数据库</span>
+                                    <span class="text-yellow-400 text-sm font-mono" id="dbStatus">偶尔失联 ●</span>
+                                </div>
+                                <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+                                    <span class="text-gray-300"><i class="fas fa-graduation-cap mr-2 text-wild-gold"></i> 在读学生</span>
+                                    <span class="text-wild-gold text-sm font-mono" id="studentCount">∞</span>
+                                </div>
+                                <div class="flex justify-between items-center p-4 bg-white/5 rounded-lg">
+                                    <span class="text-gray-300"><i class="fas fa-money-bill-wave mr-2 text-green-400"></i> 学费</span>
+                                    <span class="text-green-400 text-sm font-mono">$0.00</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 p-4 bg-wild-gold/10 rounded-lg border border-wild-gold/30">
+                                <p class="text-center text-wild-gold text-sm">
+                                    <i class="fas fa-info-circle mr-2"></i>
+                                    校园维护由志愿者用爱发电
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 bg-gradient-to-b from-wild-dark to-[#0f172a]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl md:text-5xl font-bold font-serif mb-4">
+                    <span class="text-gradient">校友评价</span>
+                </h2>
+                <p class="text-gray-400">听听我们的"毕业生"怎么说</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card rounded-2xl p-8 border border-wild-gold/20 hover:border-wild-gold/50 transition-all scroll-reveal">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gray-600 to-gray-800 flex items-center justify-center text-xl">
+                            🤓
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">张三</h4>
+                            <p class="text-xs text-gray-500">.edu 工程系 '23 届</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"自从有了野鸡大学的 .edu 邮箱，我免费拿到了 GitHub Pro 和 JetBrains 全家桶。这比我花几万块读的书有用多了！"</p>
+                    <div class="mt-4 flex text-wild-gold">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 border border-wild-gold/20 hover:border-wild-gold/50 transition-all scroll-reveal">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gray-600 to-gray-800 flex items-center justify-center text-xl">
+                            🎓
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">李四</h4>
+                            <p class="text-xs text-gray-500">LinkedIn 吹牛学 '22 届</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"我在简历上写了野鸡私立大学，面试官居然问我是不是校友。我说'是的'，然后我们都笑了。"</p>
+                    <div class="mt-4 flex text-wild-gold">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 border border-wild-gold/20 hover:border-wild-gold/50 transition-all scroll-reveal">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gray-600 to-gray-800 flex items-center justify-center text-xl">
+                            🐔
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">王五</h4>
+                            <p class="text-xs text-gray-500">优惠券狩猎 '24 届</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"我在这所大学学会了如何用学生身份省钱。一年下来，省的钱比正经大学四年的学费还多。"</p>
+                    <div class="mt-4 flex text-wild-gold">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-gradient-to-b from-[#0f172a] to-wild-dark relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-wild-gold/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-wild-accent/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center scroll-reveal">
+            <h2 class="text-4xl md:text-5xl font-bold font-serif mb-6">
+                <span class="text-gradient">准备好加入了吗？</span>
+            </h2>
+            <p class="text-gray-400 mb-8 text-lg">
+                不需要填写任何表格，直接前往邮箱系统注册即可获得你的 .edu 邮箱
+            </p>
+            <a href="https://mail.yeji.edu.kg" target="_blank" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-wild-gold to-yellow-600 text-wild-dark font-bold text-lg rounded-full hover:shadow-2xl hover:shadow-wild-gold/50 transition-all transform hover:scale-105 group">
+                <i class="fas fa-rocket mr-3"></i>
+                立即前往邮箱系统
+                <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            <p class="mt-6 text-sm text-gray-500">
+                <i class="fas fa-exclamation-triangle mr-2 text-yellow-500"></i>
+                警告：这不是真正的大学，仅供娱乐
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-wild-gold/20 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-wild-gold to-yellow-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-dove text-wild-dark"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gradient font-serif">野鸡私立大学</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-sm">让每个人都用上免费的 .edu。成立于某个深夜的灵感爆发。</p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4">快速链接</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-wild-gold transition-colors">关于我们（不存在）</a></li>
+                        <li><a href="#" class="hover:text-wild-gold transition-colors">招生信息（随便来）</a></li>
+                        <li><a href="#" class="hover:text-wild-gold transition-colors">校园生活（在床上）</a></li>
+                        <li><a href="#" class="hover:text-wild-gold transition-colors">捐赠（不需要）</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4">联系方式</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><i class="fa fa-envelope mr-2"></i><a href="mailto:beibing@yeji.edu.kg" class="hover:text-wild-gold transition-colors"> beibing@yeji.edu.kg</a></li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> 互联网某处</li>
+                        <li><i class="fas fa-phone mr-2"></i> 不接电话</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4">关注我们</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-wild-gold/20 hover:text-wild-gold transition-all">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-wild-gold/20 hover:text-wild-gold transition-all">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-wild-gold/20 hover:text-wild-gold transition-all">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 友链 -->
+            <div class="border-t border-gray-800 pt-8 mb-8">
+                <h4 class="text-white font-bold mb-4 text-center">友情链接</h4>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="https://www.zzrbk.xyz" target="_blank" class="group flex items-center space-x-2 px-4 py-2 rounded-lg bg-white/5 border border-gray-700 hover:border-wild-gold/50 hover:bg-wild-gold/10 transition-all">
+                        <span class="text-gray-300 group-hover:text-wild-gold transition-colors">Beibingの小窝</span>
+                        <span class="text-xs text-gray-500 group-hover:text-gray-400">www.zzrbk.xyz</span>
+                    </a>
+                    <a href="https://www.fryfries13.cn" target="_blank" class="group flex items-center space-x-2 px-4 py-2 rounded-lg bg-white/5 border border-gray-700 hover:border-wild-gold/50 hover:bg-wild-gold/10 transition-all">
+                        <span class="text-gray-300 group-hover:text-wild-gold transition-colors">Fry酥条の主页</span>
+                        <span class="text-xs text-gray-500 group-hover:text-gray-400">www.fryfries13.cn</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-600 text-sm mb-4 md:mb-0">
+                     野鸡私立大学 (Wild Chicken University). 保留所有不存在的权利。
+                </p>
+                <div class="flex items-center space-x-4 text-sm text-gray-600">
+                    <span>未经认证</span>
+                    <span>•</span>
+                    <span>非盈利（因为没收入）</span>
+                    <span>•</span>
+                    <span>用爱发电</span>
+                    <span>•</span>
+                    <span><a href="https://icp.gov.moe/?keyword=20260630" target="_blank">萌ICP备20260630号</a></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Easter Egg Modal -->
+    <div id="easterEgg" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm">
+        <div class="glass-card rounded-2xl p-8 max-w-md mx-4 border border-wild-gold/50 text-center transform scale-0 transition-transform duration-300" id="easterEggContent">
+            <div class="text-6xl mb-4">🐔</div>
+            <h3 class="text-2xl font-bold mb-2 text-wild-gold">咕咕咕！</h3>
+            <p class="text-gray-300 mb-6">你发现了隐藏彩蛋！作为奖励，我们承诺：你的 .edu 邮箱将在 3-5 个工作日内（可能永远不会）发送到你的邮箱。</p>
+            <button onclick="closeEasterEgg()" class="px-6 py-2 bg-wild-gold text-wild-dark font-bold rounded-full hover:shadow-lg transition-all">
+                我知道了
+            </button>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Typing Effect
+        const text = "让每个人都用上免费的 .edu";
+        const typingElement = document.getElementById('typingText');
+        let i = 0;
+
+        function typeWriter() {
+            if (i < text.length) {
+                typingElement.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        setTimeout(typeWriter, 1000);
+
+        // Scroll Reveal
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 2000;
+                    const step = target / (duration / 16);
+                    let current = 0;
+
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            counter.textContent = target === 99999 ? '99,999+' : target;
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = Math.floor(current);
+                        }
+                    }, 16);
+
+                    counterObserver.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-wild-dark/95', 'shadow-lg');
+            } else {
+                navbar.classList.remove('bg-wild-dark/95', 'shadow-lg');
+            }
+        });
+
+        // Mobile Menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Smooth Scroll
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Easter Egg
+        let clickCount = 0;
+        document.querySelector('.fa-dove').addEventListener('click', () => {
+            clickCount++;
+            if (clickCount >= 3) {
+                document.getElementById('easterEgg').classList.remove('hidden');
+                document.getElementById('easterEgg').classList.add('flex');
+                setTimeout(() => {
+                    document.getElementById('easterEggContent').classList.remove('scale-0');
+                    document.getElementById('easterEggContent').classList.add('scale-100');
+                }, 10);
+                clickCount = 0;
+            }
+        });
+
+        function closeEasterEgg() {
+            document.getElementById('easterEggContent').classList.remove('scale-100');
+            document.getElementById('easterEggContent').classList.add('scale-0');
+            setTimeout(() => {
+                document.getElementById('easterEgg').classList.add('hidden');
+                document.getElementById('easterEgg').classList.remove('flex');
+            }, 300);
+        }
+
+        // Random Status Updates
+        setInterval(() => {
+            const statuses = ['运行中 ●', '有点卡 ●', '正在重启 ●', '正常 ●', '负载过高 ●'];
+            const colors = ['text-green-400', 'text-yellow-400', 'text-red-400', 'text-green-400', 'text-orange-400'];
+            const random = Math.floor(Math.random() * statuses.length);
+            
+            document.getElementById('siteStatus').textContent = statuses[random];
+            document.getElementById('siteStatus').className = `text-sm font-mono ${colors[random]}`;
+        }, 5000);
+
+        // Dynamic Student Count
+        setInterval(() => {
+            const count = Math.floor(Math.random() * 10000) + 90000;
+            document.getElementById('studentCount').textContent = count.toLocaleString() + '+';
+        }, 3000);
+    </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"12a4027148f3480abb16b13ea4948176","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,5 +1,7 @@
 # 🐔 野鸡私立大学 (Wild Chicken Private University)
 
+[中文](README.md) | [English](README_EN.md)
+
 <p align="center">
   <img src="https://yeji.edu.kg/favicon.ico" alt="WCU Logo" width="120">
 </p>

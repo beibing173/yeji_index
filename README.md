@@ -168,5 +168,5 @@
 </p>
 
 <p align="center">
-  Made with ❤️ and 🐔 by the Fry酥条/Beibing
+  &copy Made with ❤️ and 🐔 by the Fry酥条 and Beibing.
 </p>
